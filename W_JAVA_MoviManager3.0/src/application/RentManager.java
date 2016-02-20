@@ -3,17 +3,21 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentManager {
+public class RentManager
+{
 
-	public static int totalIncome(List<Buyable> buyables) {
+	public static int totalIncome(List<Buyable> buyables)
+	{
 		int totalIncome = 0;
-		for (Buyable buyable : buyables) {
+		for (Buyable buyable : buyables)
+		{
 			totalIncome += buyable.getPrice();
 		}
 		return totalIncome;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// PERSONS
 		// actors/actresses for movies
 		Person a1 = new Person("Jason", "Statham", Gender.MALE, 1155);
@@ -56,12 +60,12 @@ public class RentManager {
 		List<Person> game1cast = new ArrayList<Person>();
 		game1cast.add(s1);
 		game1cast.add(s2);
-		Game game1 = new Game("Halo5", c4, false, game1cast, 100, 2010);
+		Game game1 = new Game("Halo5", c4, false, game1cast, 12);
 
-		// List<Person> game2cast = new ArrayList<Person>();
-		// game2cast.add(s2);
-		// game2cast.add(s3);
-		// Game game2 = new Game("Halo6", c5, true, game2cast, 11);
+		List<Person> game2cast = new ArrayList<Person>();
+		game2cast.add(s2);
+		game2cast.add(s3);
+		Game game2 = new Game("Halo6", c5, true, game2cast, 10);
 
 		// BOOKS
 		Book book1 = new Book("Egykonyvcim", c1, ba1);
@@ -70,7 +74,7 @@ public class RentManager {
 		// total income
 		List<Buyable> buyables = new ArrayList<Buyable>();
 		buyables.add(game1);
-		buyables.add(game1);
+		buyables.add(game2);
 		buyables.add(movie1);
 		buyables.add(movie2);
 
@@ -78,7 +82,7 @@ public class RentManager {
 		System.out.println("The total income from the buyable products:" + totalIncome(buyables) + "$");
 		System.out.println("\nProduct examples:\n");
 		System.out.println("\n" + movie1 + "\nTOTAL INVESTMENT: " + movie1.getInvestment() + "$");
-		System.out.println("\n" + game1 + "\nTOTAL INVESTMENT: " + game1.getInvestment() + "$");
+		System.out.println("\n" + game2 + "\nTOTAL INVESTMENT: " + game2.getInvestment() + "$");
 		System.out.println("\n" + book1 + "\nTOTAL INVESTMENT: " + book1.getInvestment() + "$");
 
 	}
