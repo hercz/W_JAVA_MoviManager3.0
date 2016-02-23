@@ -79,7 +79,7 @@ public class MovieManagerClient
 			ObjectOutputStream streamToServer = new ObjectOutputStream(client.getOutputStream());
 
 			// ---S_E_N_D_I_N_G__C_O_M_M_A_N_D_S---
-			// you can swich by comment/uncomment theese
+			// you can switch by comment/uncomment these
 
 			// ---EXIT---
 			// System.out.println("Sending command EXIT");
@@ -87,28 +87,28 @@ public class MovieManagerClient
 			// System.out.println("Server shut down");
 
 			// ---PUT---
-			// System.out.println("Sending command PUT");
-			// send(streamToServer, Command.PUT);
-			// System.out.println("Server shut down");
-			//
-			// System.out.println("Sending object to the server");
-			// send(streamToServer, movie1);
-			// send(streamToServer, a2);
+			System.out.println("Sending command PUT");
+			send(streamToServer, Command.PUT);
+			System.out.println("Server shut down");
+
+			System.out.println("Sending object to the server");
+			send(streamToServer, movie1);
+			send(streamToServer, a2);
 
 			// ---GET---
-			System.out.println("Sending command GET");
-			send(streamToServer, Command.GET);
-			System.out.println("Server shut down");
-			Object dataFromFile = streamFromServer.readObject();
-			if (dataFromFile instanceof List)
-			{
-				List<Object> objects = (List<Object>) dataFromFile;
-				for (Object object : objects)
-				{
-					System.out.println(object);
-				}
-				send(streamToServer, Command.EXIT);
-			}
+			// System.out.println("Sending command GET");
+			// send(streamToServer, Command.GET);
+			// System.out.println("Server shut down");
+			// Object dataFromFile = streamFromServer.readObject();
+			// if (dataFromFile instanceof List)
+			// {
+			// List<Object> objects = (List<Object>) dataFromFile;
+			// for (Object object : objects)
+			// {
+			// System.out.println(object);
+			// }
+			// send(streamToServer, Command.EXIT);
+			// }
 
 			// C_L_O_S_E
 			System.out.println("Closing the connection from the client side");
