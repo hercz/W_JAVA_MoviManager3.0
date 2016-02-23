@@ -1,8 +1,9 @@
 package application;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Game extends Product implements Buyable
+public class Game extends Product implements Buyable, Serializable
 {
 	boolean preOrdered;
 	List<Person> staff;

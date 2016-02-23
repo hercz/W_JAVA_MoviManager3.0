@@ -1,12 +1,16 @@
 package application;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable
+{
 	String firstName;
 	String lastName;
 	Gender gender;
 	int salary;
 
-	public Person(String firstName, String lastName, Gender gender, int salary) {
+	public Person(String firstName, String lastName, Gender gender, int salary)
+	{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -14,40 +18,49 @@ public class Person {
 
 	}
 
-	public String getFirstName() {
+	public String getFirstName()
+	{
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(String firstName)
+	{
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
+	public String getLastName()
+	{
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(String lastName)
+	{
 		this.lastName = lastName;
 	}
 
-	public Gender getGender() {
+	public Gender getGender()
+	{
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(Gender gender)
+	{
 		this.gender = gender;
 	}
 
-	public int getSalary() {
+	public int getSalary()
+	{
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(int salary)
+	{
 		this.salary = salary;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "\n" + firstName + " " + lastName + " - " + gender + " - " + "Salary: " + salary + "$";
 	}
 }

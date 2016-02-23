@@ -1,21 +1,27 @@
 package application;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable
+{
 	protected String id;
 	protected String title;
 	protected Person person;
 
-	public Product(String title, Person person) {
+	public Product(String title, Person person)
+	{
 		this.id = IdGenerator.generate(this);
 		this.title = title;
 		this.person = person;
 	}
 
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public Person getPerson() {
+	public Person getPerson()
+	{
 		return person;
 	}
 

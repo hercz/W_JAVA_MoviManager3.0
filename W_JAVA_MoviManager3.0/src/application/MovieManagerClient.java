@@ -1,20 +1,14 @@
 package application;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentManager
+public class MovieManagerClient
 {
-
-	public static int totalIncome(List<Buyable> buyables)
-	{
-		int totalIncome = 0;
-		for (Buyable buyable : buyables)
-		{
-			totalIncome += buyable.getPrice();
-		}
-		return totalIncome;
-	}
 
 	public static void main(String[] args)
 	{
@@ -71,19 +65,73 @@ public class RentManager
 		Book book1 = new Book("Egykonyvcim", c1, ba1);
 		Product book2 = new Book("Ketkonyvcim", c2, ba2);
 
-		// total income
-		List<Buyable> buyables = new ArrayList<Buyable>();
-		buyables.add(game1);
-		buyables.add(game2);
-		buyables.add(movie1);
-		buyables.add(movie2);
+		// ---C_O_N_N_E_C_T___T_O___S_E_R_V_E_R---
+		try
+		{
+			System.out.println("---C_L_I_E_N_T---\n");
+			Socket client = new Socket("localhost", 4445);
+			System.out.println("Client Connected");
 
-		// TESTS
-		System.out.println("The total income from the buyable products:" + totalIncome(buyables) + "$");
-		System.out.println("\nProduct examples:\n");
-		System.out.println("\n" + movie1 + "\nTOTAL INVESTMENT: " + movie1.getInvestment() + "$");
-		System.out.println("\n" + game2 + "\nTOTAL INVESTMENT: " + game2.getInvestment() + "$");
-		System.out.println("\n" + book1 + "\nTOTAL INVESTMENT: " + book1.getInvestment() + "$");
+			// input
+			ObjectInputStream streamFromServer = new ObjectInputStream(client.getInputStream());
 
+			// output
+			ObjectOutputStream streamToServer = new ObjectOutputStream(client.getOutputStream());
+
+			// ---S_E_N_D_I_N_G__C_O_M_M_A_N_D_S---
+			// you can swich by comment/uncomment theese
+
+			// ---EXIT---
+			// System.out.println("Sending command EXIT");
+			// send(streamToServer, Command.EXIT);
+			// System.out.println("Server shut down");
+
+			// ---PUT---
+			// System.out.println("Sending command PUT");
+			// send(streamToServer, Command.PUT);
+			// System.out.println("Server shut down");
+			//
+			// System.out.println("Sending object to the server");
+			// send(streamToServer, movie1);
+			// send(streamToServer, a2);
+
+			// ---GET---
+			System.out.println("Sending command GET");
+			send(streamToServer, Command.GET);
+			System.out.println("Server shut down");
+			Object dataFromFile = streamFromServer.readObject();
+			if (dataFromFile instanceof List)
+			{
+				List<Object> objects = (List<Object>) dataFromFile;
+				for (Object object : objects)
+				{
+					System.out.println(object);
+				}
+				send(streamToServer, Command.EXIT);
+			}
+
+			// C_L_O_S_E
+			System.out.println("Closing the connection from the client side");
+			client.close();
+			System.out.println("Connection closed");
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+
+		}
+
+	}
+
+	public static void send(ObjectOutputStream sendto, Object objectToSend)
+	{
+		try
+		{
+			sendto.write(0);
+			sendto.writeObject(objectToSend);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
