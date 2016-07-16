@@ -1,4 +1,6 @@
-# 11A_Movies_v3.0
+# W_JAVA_MoviManager3.0
+
+[Codecool](https://codecool.hu/) school project.
 
 **Main topics:**
 Serialization, Basic Client-Server Programming, ServerSocket, Socket
